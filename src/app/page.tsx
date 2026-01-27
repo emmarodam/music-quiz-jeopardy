@@ -1,65 +1,134 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
+import { Play, Plus, Music, Trophy, Users, Youtube, Sparkles } from 'lucide-react';
+import { useGameStore } from '@/stores/gameStore';
+import { testGame } from '@/data/testGame';
+
+export default function HomePage() {
+  const router = useRouter();
+  const { currentGame, setGame } = useGameStore();
+
+  const hasExistingGame = currentGame && currentGame.categories.some(
+    (cat) => cat.name && cat.questions.some((q) => q.answer)
+  );
+
+  const loadTestGame = () => {
+    setGame(testGame);
+    router.push('/game');
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 flex flex-col relative overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-pink-500/20 rounded-full blur-3xl" />
+        <div className="absolute top-40 right-20 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-yellow-500/20 rounded-full blur-3xl" />
+      </div>
+
+      {/* Hero Section */}
+      <div className="flex-1 flex flex-col items-center justify-center p-8 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center space-y-6 max-w-2xl"
+        >
+          {/* Logo / Title */}
+          <div className="space-y-2">
+            <motion.div
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              transition={{ type: 'spring', damping: 10 }}
+              className="flex items-center justify-center gap-3"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              <motion.div
+                animate={{ rotate: [0, 10, -10, 0] }}
+                transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+              >
+                <Music className="w-14 h-14 text-yellow-400 drop-shadow-lg" />
+              </motion.div>
+              <h1 className="text-5xl md:text-7xl font-bold">
+                <span className="bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">Music</span>
+                {' '}
+                <span className="bg-gradient-to-r from-yellow-400 via-orange-400 to-pink-400 bg-clip-text text-transparent">Quiz</span>
+              </h1>
+            </motion.div>
+            <p className="text-xl text-purple-200">Jeopardy-Style Music Trivia</p>
+          </div>
+
+          {/* Feature highlights */}
+          <div className="grid grid-cols-3 gap-4 py-6">
+            <motion.div
+              whileHover={{ scale: 1.05, rotate: 2 }}
+              className="flex flex-col items-center gap-2 p-4 bg-gradient-to-br from-yellow-500/30 to-orange-500/30 backdrop-blur-sm rounded-2xl border border-yellow-500/30 shadow-lg"
             >
-              Learning
-            </a>{" "}
-            center.
+              <Trophy className="w-8 h-8 text-yellow-400" />
+              <span className="text-sm text-white font-medium">Score Points</span>
+            </motion.div>
+            <motion.div
+              whileHover={{ scale: 1.05, rotate: -2 }}
+              className="flex flex-col items-center gap-2 p-4 bg-gradient-to-br from-red-500/30 to-pink-500/30 backdrop-blur-sm rounded-2xl border border-red-500/30 shadow-lg"
+            >
+              <Youtube className="w-8 h-8 text-red-400" />
+              <span className="text-sm text-white font-medium">YouTube Songs</span>
+            </motion.div>
+            <motion.div
+              whileHover={{ scale: 1.05, rotate: 2 }}
+              className="flex flex-col items-center gap-2 p-4 bg-gradient-to-br from-cyan-500/30 to-blue-500/30 backdrop-blur-sm rounded-2xl border border-cyan-500/30 shadow-lg"
+            >
+              <Users className="w-8 h-8 text-cyan-400" />
+              <span className="text-sm text-white font-medium">2-4 Players</span>
+            </motion.div>
+          </div>
+
+          {/* Action Buttons - Always visible now */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+            <motion.button
+              onClick={() => router.push('/create')}
+              className="flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-400 hover:to-purple-400 text-white font-bold text-lg rounded-xl transition-all shadow-lg"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Plus className="w-6 h-6" />
+              Create New Game
+            </motion.button>
+
+            <motion.button
+              onClick={loadTestGame}
+              className="flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-400 hover:to-orange-400 text-white font-bold text-lg rounded-xl transition-all shadow-lg"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Sparkles className="w-6 h-6" />
+              Try Demo Game
+            </motion.button>
+
+            {hasExistingGame && (
+              <motion.button
+                onClick={() => router.push('/game')}
+                className="flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-400 hover:to-emerald-400 text-white font-bold text-lg rounded-xl transition-all shadow-lg"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Play className="w-6 h-6" />
+                Continue Game
+              </motion.button>
+            )}
+          </div>
+
+          {/* Info text */}
+          <p className="text-purple-300/70 text-sm pt-4">
+            Add YouTube links to your questions - players hear the music but can&apos;t see the video!
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+        </motion.div>
+      </div>
+
+      {/* Footer */}
+      <footer className="p-4 text-center text-purple-300/60 text-sm relative z-10">
+        <p>Create custom music quizzes with your favorite songs</p>
+      </footer>
     </div>
   );
 }

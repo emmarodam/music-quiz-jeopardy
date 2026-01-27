@@ -1,26 +1,91 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Background */
+  --background: #0f172a;
+  --foreground: #ffffff;
+
+  /* Game Colors */
+  --board-bg: #0f172a;
+  --cell-bg: #1e40af;
+  --cell-hover: #2563eb;
+  --cell-answered: #374151;
+
+  /* Accent Colors */
+  --gold: #f59e0b;
+  --gold-light: #fcd34d;
+
+  /* Feedback Colors */
+  --correct: #10b981;
+  --correct-light: #34d399;
+  --wrong: #ef4444;
+  --wrong-light: #f87171;
+
+  /* Player Colors */
+  --player-1: #3b82f6;
+  --player-2: #ef4444;
+  --player-3: #10b981;
+  --player-4: #f59e0b;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-board-bg: var(--board-bg);
+  --color-cell-bg: var(--cell-bg);
+  --color-cell-hover: var(--cell-hover);
+  --color-cell-answered: var(--cell-answered);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-correct: var(--correct);
+  --color-correct-light: var(--correct-light);
+  --color-wrong: var(--wrong);
+  --color-wrong-light: var(--wrong-light);
+  --color-player-1: var(--player-1);
+  --color-player-2: var(--player-2);
+  --color-player-3: var(--player-3);
+  --color-player-4: var(--player-4);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+/* Animation keyframes */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(245, 158, 11, 0.8);
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+@keyframes score-pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 1.5s ease-in-out infinite;
+}
+
+.animate-shake {
+  animation: shake 0.3s ease-in-out;
+}
+
+.animate-score-pop {
+  animation: score-pop 0.3s ease-out;
 }
