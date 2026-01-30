@@ -1,7 +1,7 @@
 import { Game, PLAYER_COLORS, POINT_VALUES } from '@/types/game';
 
-// Sample YouTube video IDs for popular songs (these are real video IDs)
-const sampleVideos = {
+// YouTube video IDs for popular songs
+const songVideos = {
   // 80s hits
   takeOnMe: 'djV11Xbc914', // a-ha - Take On Me
   bilieJean: 'Zi_XLOBDo_Y', // Michael Jackson - Billie Jean
@@ -30,8 +30,8 @@ const sampleVideos = {
   rollingInTheDeep: 'rYEDA3JcQqw', // Adele - Rolling in the Deep
 };
 
-export const testGame: Game = {
-  id: 'test-game-1',
+export const readyMadeQuiz: Game = {
+  id: 'ready-made-quiz-1',
   name: 'Ultimate Music Quiz',
   description: 'Test your music knowledge across decades!',
   categories: [
@@ -47,8 +47,8 @@ export const testGame: Game = {
           type: 'audio',
           questionText: 'Name this iconic 80s synth-pop hit!',
           answer: 'Take On Me - a-ha',
-          youtubeVideoId: sampleVideos.takeOnMe,
-          youtubeUrl: `https://youtube.com/watch?v=${sampleVideos.takeOnMe}`,
+          youtubeVideoId: songVideos.takeOnMe,
+          youtubeUrl: `https://youtube.com/watch?v=${songVideos.takeOnMe}`,
           isAnswered: false,
         },
         {
@@ -59,8 +59,8 @@ export const testGame: Game = {
           type: 'audio',
           questionText: 'Who sang this moonwalking classic?',
           answer: 'Billie Jean - Michael Jackson',
-          youtubeVideoId: sampleVideos.bilieJean,
-          youtubeUrl: `https://youtube.com/watch?v=${sampleVideos.bilieJean}`,
+          youtubeVideoId: songVideos.bilieJean,
+          youtubeUrl: `https://youtube.com/watch?v=${songVideos.bilieJean}`,
           isAnswered: false,
         },
         {
@@ -71,8 +71,8 @@ export const testGame: Game = {
           type: 'audio',
           questionText: 'Name this dreamy 80s hit!',
           answer: 'Sweet Dreams - Eurythmics',
-          youtubeVideoId: sampleVideos.sweetDreams,
-          youtubeUrl: `https://youtube.com/watch?v=${sampleVideos.sweetDreams}`,
+          youtubeVideoId: songVideos.sweetDreams,
+          youtubeUrl: `https://youtube.com/watch?v=${songVideos.sweetDreams}`,
           isAnswered: false,
         },
         {
@@ -83,8 +83,8 @@ export const testGame: Game = {
           type: 'both',
           questionText: 'This song features the lyrics "Is this the real life?"',
           answer: 'Bohemian Rhapsody - Queen',
-          youtubeVideoId: sampleVideos.bohemianRhapsody,
-          youtubeUrl: `https://youtube.com/watch?v=${sampleVideos.bohemianRhapsody}`,
+          youtubeVideoId: songVideos.bohemianRhapsody,
+          youtubeUrl: `https://youtube.com/watch?v=${songVideos.bohemianRhapsody}`,
           isAnswered: false,
         },
         {
@@ -95,8 +95,8 @@ export const testGame: Game = {
           type: 'audio',
           questionText: 'Name this spooky dance hit!',
           answer: 'Thriller - Michael Jackson',
-          youtubeVideoId: sampleVideos.thriller,
-          youtubeUrl: `https://youtube.com/watch?v=${sampleVideos.thriller}`,
+          youtubeVideoId: songVideos.thriller,
+          youtubeUrl: `https://youtube.com/watch?v=${songVideos.thriller}`,
           isAnswered: false,
         },
       ],
@@ -113,8 +113,8 @@ export const testGame: Game = {
           type: 'audio',
           questionText: 'This grunge anthem defined a generation!',
           answer: 'Smells Like Teen Spirit - Nirvana',
-          youtubeVideoId: sampleVideos.smellsLikeTeenSpirit,
-          youtubeUrl: `https://youtube.com/watch?v=${sampleVideos.smellsLikeTeenSpirit}`,
+          youtubeVideoId: songVideos.smellsLikeTeenSpirit,
+          youtubeUrl: `https://youtube.com/watch?v=${songVideos.smellsLikeTeenSpirit}`,
           isAnswered: false,
         },
         {
@@ -125,8 +125,8 @@ export const testGame: Game = {
           type: 'audio',
           questionText: 'Girl power anthem - name the song and band!',
           answer: 'Wannabe - Spice Girls',
-          youtubeVideoId: sampleVideos.wannabe,
-          youtubeUrl: `https://youtube.com/watch?v=${sampleVideos.wannabe}`,
+          youtubeVideoId: songVideos.wannabe,
+          youtubeUrl: `https://youtube.com/watch?v=${songVideos.wannabe}`,
           isAnswered: false,
         },
         {
@@ -173,8 +173,8 @@ export const testGame: Game = {
           type: 'audio',
           questionText: 'Name this infectious 2003 hit!',
           answer: 'Crazy In Love - Beyonce ft. Jay-Z',
-          youtubeVideoId: sampleVideos.crazyInLove,
-          youtubeUrl: `https://youtube.com/watch?v=${sampleVideos.crazyInLove}`,
+          youtubeVideoId: songVideos.crazyInLove,
+          youtubeUrl: `https://youtube.com/watch?v=${songVideos.crazyInLove}`,
           isAnswered: false,
         },
         {
@@ -185,8 +185,8 @@ export const testGame: Game = {
           type: 'audio',
           questionText: 'This indie rock anthem starts with "Coming out of my cage..."',
           answer: 'Mr. Brightside - The Killers',
-          youtubeVideoId: sampleVideos.mrBrightside,
-          youtubeUrl: `https://youtube.com/watch?v=${sampleVideos.mrBrightside}`,
+          youtubeVideoId: songVideos.mrBrightside,
+          youtubeUrl: `https://youtube.com/watch?v=${songVideos.mrBrightside}`,
           isAnswered: false,
         },
         {
@@ -233,8 +233,8 @@ export const testGame: Game = {
           type: 'audio',
           questionText: 'Name this funky 2014 hit!',
           answer: 'Uptown Funk - Mark Ronson ft. Bruno Mars',
-          youtubeVideoId: sampleVideos.uptown,
-          youtubeUrl: `https://youtube.com/watch?v=${sampleVideos.uptown}`,
+          youtubeVideoId: songVideos.uptown,
+          youtubeUrl: `https://youtube.com/watch?v=${songVideos.uptown}`,
           isAnswered: false,
         },
         {
@@ -245,8 +245,8 @@ export const testGame: Game = {
           type: 'audio',
           questionText: 'This 2017 hit was everywhere!',
           answer: 'Shape of You - Ed Sheeran',
-          youtubeVideoId: sampleVideos.shapeOfYou,
-          youtubeUrl: `https://youtube.com/watch?v=${sampleVideos.shapeOfYou}`,
+          youtubeVideoId: songVideos.shapeOfYou,
+          youtubeUrl: `https://youtube.com/watch?v=${songVideos.shapeOfYou}`,
           isAnswered: false,
         },
         {
@@ -257,8 +257,8 @@ export const testGame: Game = {
           type: 'audio',
           questionText: 'Clap along if you know this song!',
           answer: 'Happy - Pharrell Williams',
-          youtubeVideoId: sampleVideos.happy,
-          youtubeUrl: `https://youtube.com/watch?v=${sampleVideos.happy}`,
+          youtubeVideoId: songVideos.happy,
+          youtubeUrl: `https://youtube.com/watch?v=${songVideos.happy}`,
           isAnswered: false,
         },
         {
@@ -269,8 +269,8 @@ export const testGame: Game = {
           type: 'audio',
           questionText: 'This powerful ballad won 6 Grammys!',
           answer: 'Rolling in the Deep - Adele',
-          youtubeVideoId: sampleVideos.rollingInTheDeep,
-          youtubeUrl: `https://youtube.com/watch?v=${sampleVideos.rollingInTheDeep}`,
+          youtubeVideoId: songVideos.rollingInTheDeep,
+          youtubeUrl: `https://youtube.com/watch?v=${songVideos.rollingInTheDeep}`,
           isAnswered: false,
         },
         {
@@ -317,8 +317,8 @@ export const testGame: Game = {
           type: 'audio',
           questionText: 'Name this epic rock ballad!',
           answer: 'Stairway to Heaven - Led Zeppelin',
-          youtubeVideoId: sampleVideos.stairwayToHeaven,
-          youtubeUrl: `https://youtube.com/watch?v=${sampleVideos.stairwayToHeaven}`,
+          youtubeVideoId: songVideos.stairwayToHeaven,
+          youtubeUrl: `https://youtube.com/watch?v=${songVideos.stairwayToHeaven}`,
           isAnswered: false,
         },
         {
@@ -355,8 +355,8 @@ export const testGame: Game = {
           type: 'audio',
           questionText: 'Name this Madonna classic!',
           answer: 'Like a Prayer - Madonna',
-          youtubeVideoId: sampleVideos.likeAPrayer,
-          youtubeUrl: `https://youtube.com/watch?v=${sampleVideos.likeAPrayer}`,
+          youtubeVideoId: songVideos.likeAPrayer,
+          youtubeUrl: `https://youtube.com/watch?v=${songVideos.likeAPrayer}`,
           isAnswered: false,
         },
         {

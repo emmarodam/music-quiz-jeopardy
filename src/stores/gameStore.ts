@@ -1,7 +1,7 @@
 'use client';
 
 import { create } from 'zustand';
-import { Game, Question, Player, createEmptyGame, PLAYER_COLORS } from '@/types/game';
+import { Game, Question, Player, createEmptyGame, PLAYER_COLORS, TEAM_EMOJIS } from '@/types/game';
 
 interface GameState {
   // Game data
@@ -30,6 +30,7 @@ interface GameState {
   addPlayer: (name: string) => void;
   removePlayer: (id: string) => void;
   updatePlayerName: (id: string, name: string) => void;
+  updatePlayerEmoji: (id: string, emoji: string) => void;
   setCurrentPlayer: (index: number) => void;
   nextPlayer: () => void;
 
@@ -176,11 +177,13 @@ export const useGameStore = create<GameState>((set, get) => ({
     const { currentGame } = get();
     if (!currentGame || currentGame.players.length >= 4) return;
 
+    const playerIndex = currentGame.players.length;
     const newPlayer: Player = {
       id: crypto.randomUUID(),
       name,
       score: 0,
-      color: PLAYER_COLORS[currentGame.players.length],
+      color: PLAYER_COLORS[playerIndex],
+      emoji: TEAM_EMOJIS[playerIndex + 2], // Start from index 2 since 0,1 are used by default players
     };
 
     set({
@@ -209,6 +212,17 @@ export const useGameStore = create<GameState>((set, get) => ({
 
     const updatedPlayers = currentGame.players.map((p) =>
       p.id === id ? { ...p, name } : p
+    );
+
+    set({ currentGame: { ...currentGame, players: updatedPlayers } });
+  },
+
+  updatePlayerEmoji: (id, emoji) => {
+    const { currentGame } = get();
+    if (!currentGame) return;
+
+    const updatedPlayers = currentGame.players.map((p) =>
+      p.id === id ? { ...p, emoji } : p
     );
 
     set({ currentGame: { ...currentGame, players: updatedPlayers } });

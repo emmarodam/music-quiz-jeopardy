@@ -36,7 +36,15 @@ export interface Player {
   name: string;
   score: number;
   color: string;
+  emoji?: string;
 }
+
+export const TEAM_EMOJIS = [
+  '🎸', '🎤', '🎹', '🥁', '🎺', '🎻', '🎷', '🪗',
+  '🦄', '🐉', '🦊', '🐺', '🦁', '🐯', '🦅', '🦋',
+  '⭐', '🔥', '💎', '🌈', '⚡', '🌟', '✨', '💫',
+  '🏆', '👑', '🎯', '🚀', '💪', '🎪', '🎭', '🎨',
+];
 
 export interface Game {
   id: string;
@@ -91,8 +99,8 @@ export function createEmptyGame(): Game {
     name: '',
     categories: Array.from({ length: 6 }, (_, i) => createEmptyCategory(i)),
     players: [
-      { id: '1', name: 'Team 1', score: 0, color: PLAYER_COLORS[0] },
-      { id: '2', name: 'Team 2', score: 0, color: PLAYER_COLORS[1] },
+      { id: '1', name: 'Team 1', score: 0, color: PLAYER_COLORS[0], emoji: '🎸' },
+      { id: '2', name: 'Team 2', score: 0, color: PLAYER_COLORS[1], emoji: '🎤' },
     ],
     createdAt: new Date(),
     updatedAt: new Date(),

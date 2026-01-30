@@ -49,11 +49,8 @@ export function Scoreboard({ players }: ScoreboardProps) {
               )}
             </AnimatePresence>
 
-            {/* Player color indicator */}
-            <div
-              className="w-4 h-4 rounded-full mb-2"
-              style={{ backgroundColor: player.color }}
-            />
+            {/* Player emoji */}
+            <span className="text-2xl mb-1">{player.emoji || '🎵'}</span>
 
             {/* Player name */}
             <p className="text-white font-medium text-sm md:text-base mb-1 truncate max-w-[100px]">
