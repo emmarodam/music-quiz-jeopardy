@@ -10,6 +10,7 @@ import { Scoreboard } from '@/components/game/Scoreboard';
 import { QuestionModal } from '@/components/game/QuestionModal';
 import { ConfettiCelebration } from '@/components/game/ConfettiCelebration';
 import { TEAM_EMOJIS } from '@/types/game';
+import { playVictorySound } from '@/utils/sounds';
 
 export default function GamePage() {
   const router = useRouter();
@@ -37,7 +38,7 @@ export default function GamePage() {
 
   // Check if game has already been played (has answered questions)
   useEffect(() => {
-    if (currentGame && answeredQuestions.size > 0) {
+    if (currentGame && answeredQuestions.length > 0) {
       setGameStarted(true);
     }
   }, [currentGame, answeredQuestions]);
@@ -60,7 +61,14 @@ export default function GamePage() {
   }
 
   const totalQuestions = currentGame.categories.length * 5;
-  const isGameComplete = answeredQuestions.size === totalQuestions;
+  const isGameComplete = answeredQuestions.length === totalQuestions;
+
+  // Play victory sound when game completes
+  useEffect(() => {
+    if (isGameComplete) {
+      playVictorySound();
+    }
+  }, [isGameComplete]);
 
   // Find winner
   const sortedPlayers = [...currentGame.players].sort((a, b) => b.score - a.score);
